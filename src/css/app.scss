@@ -1,0 +1,33 @@
+@import '../../node_modules/bulma/bulma.sass';
+@import './theme.scss';
+
+$dark: #22303C;
+$light: whitesmoke;
+
+body {
+  margin: 0;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.header {
+  justify-self: flex-start;
+}
+
+.content-body {
+  flex: 1 1 auto;
+  height: 0px;
+  min-height: 300px;
+  padding:40px 15px 10px 25px;
+}
+
+ul {
+    list-style-type: none;
+  }
+

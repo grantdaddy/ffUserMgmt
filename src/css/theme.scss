@@ -1,0 +1,75 @@
+/*
+ * Theme definitions
+ */
+
+ $themes: (
+    light: (
+      backgroundColor: snow, 
+      cardBackground: whitesmoke, 
+      hoverColor: #36382E, 
+      primaryText: #3c3c3c, 
+      secondaryText: #F06449,
+    ),
+    dark: (
+      backgroundColor: #15202B, 
+      cardBackground: #192734, 
+      hoverColor: #22303C, 
+      primaryText: #8899A6, 
+      secondaryText: #1d9bf0,
+    ),
+    twitter-dark: (
+      backgroundColor: #15202B, 
+      cardBackground: #192734, 
+      hoverColor: #22303C, 
+      primaryText: #8899A6, 
+      secondaryText: #1d9bf0,
+    ),
+    spotify-dark: (
+      backgroundColor: #121212, 
+      cardBackground: #181818, 
+      hoverColor: #404040, 
+      primaryText: #FFFFFF, 
+      secondaryText: #838383,
+    ),
+    facebook-dark: (
+      backgroundColor: #18191A, 
+      cardBackground: #242526, 
+      hoverColor: #3A3B3C, 
+      primaryText: #E4E6EB, 
+      secondaryText: #B0B3BB,
+    ),
+    red: (
+      backgroundColor: #313131, 
+      cardBackground: #414141, 
+      hoverColor: #525252, 
+      primaryText: #E4E6EB, 
+      secondaryText: #CA3E47,
+    )
+  );
+  
+  /*
+     * Implementation of themes
+     */
+  @mixin themify($themes) {
+    @each $theme, $map in $themes {
+      .theme-#{$theme} & {
+        $theme-map: () !global;
+        @each $key, $submap in $map {
+          $value: map-get(map-get($themes, $theme), '#{$key}');
+          $theme-map: map-merge(
+            $theme-map,
+            (
+              $key: $value,
+            )
+          ) !global;
+        }
+        @content;
+        $theme-map: null !global;
+      }
+    }
+  }
+  
+  @function themed($key) {
+    @return map-get($theme-map, $key);
+  }
+  
